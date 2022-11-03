@@ -12,9 +12,9 @@ export const Landing = () => {
       <BrowserRouter>
         <Navbar setSearch={setSearch} />
         <Routes>
-          <Route path="/" element={<Home search={search} />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/details" element={<Details />} />
+          <Route path="/redux-e-commerce" element={<Home search={search} />} />
+          <Route path="/redux-e-commerce/cart" element={<Cart />} />
+          <Route path="/redux-e-commerce/details" element={<Details />} />
         </Routes>
       </BrowserRouter>
     </div>
