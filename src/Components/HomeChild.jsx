@@ -5,8 +5,23 @@ import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Box } from "@mui/material";
+import { useDispatch } from "react-redux";
+import { Add } from "../Redux/actions/action";
+import { Selected } from "../Redux/actions/action";
+import { Link } from "react-router-dom";
+import "./Styles/Style.css";
 
 const HomeChild = ({ item }) => {
+  const dispatch = useDispatch();
+
+  const send = (e) => {
+    dispatch(Add(e));
+  };
+
+  const selected = (e) => {
+    dispatch(Selected(e));
+  };
+
   return (
     <Box>
       <Box>
@@ -26,9 +41,35 @@ const HomeChild = ({ item }) => {
               Description : {item.description.substr(0, 5) + "..."}
             </Typography>
           </CardContent>
-          <CardActions>
-            <Button size="small">add to cart</Button>
-            <Button size="small">details</Button>
+          <CardActions
+            sx={{
+              display: "flex",
+              justifyContent: "space-around",
+            }}
+          >
+            <Button
+              className="Buttons"
+              variant="contained"
+              size="small"
+              onClick={() => send(item)}
+              sx={{ backgroundColor: "orange", fontWeight: 600 }}
+            >
+              add to cart
+            </Button>
+            <Link
+              to="/redux-e-commerce/details"
+              style={{ textDecoration: "none" }}
+            >
+              <Button
+                className="Buttons"
+                sx={{ backgroundColor: "orange", fontWeight: 600 }}
+                variant="contained"
+                size="small"
+                onClick={() => selected(item)}
+              >
+                details
+              </Button>
+            </Link>
           </CardActions>
         </Card>
       </Box>

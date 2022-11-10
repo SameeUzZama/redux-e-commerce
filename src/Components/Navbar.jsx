@@ -16,7 +16,8 @@ import { UilAlignJustify } from "@iconscout/react-unicons";
 import { UilSearch } from "@iconscout/react-unicons";
 import { UilShoppingBag } from "@iconscout/react-unicons";
 import { UilEllipsisV } from "@iconscout/react-unicons";
-// import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -63,6 +64,8 @@ export const Navbar = ({ setSearch }) => {
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+
+  const getData = useSelector((state) => state.cartReducer.carts);
 
   const handleMobileMenuClose = () => {
     setMobileMoreAnchorEl(null);
@@ -115,15 +118,17 @@ export const Navbar = ({ setSearch }) => {
     >
       <MenuItem>
         <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="error">
-            <UilShoppingBag />
+          <Badge badgeContent={getData.length} color="error">
+            <Link to="/redux-e-commerce/cart">
+              <UilShoppingBag />
+            </Link>
           </Badge>
         </IconButton>
         <p>Cart</p>
       </MenuItem>
     </Menu>
   );
-  // const cartItem = useSelector((state) => state.groupreducer.cart);
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -135,7 +140,12 @@ export const Navbar = ({ setSearch }) => {
             aria-label="open drawer"
             sx={{ mr: 2 }}
           >
-            <UilAlignJustify />
+            <Link
+              to="/redux-e-commerce"
+              style={{ color: "white", textDecoration: "none" }}
+            >
+              <UilAlignJustify />
+            </Link>
           </IconButton>
           <Typography
             variant="h6"
@@ -143,7 +153,12 @@ export const Navbar = ({ setSearch }) => {
             component="div"
             sx={{ display: { xs: "none", sm: "block" } }}
           >
-            E-Commerce
+            <Link
+              to="/redux-e-commerce"
+              style={{ color: "white", textDecoration: "none" }}
+            >
+              E-Commerce
+            </Link>
           </Typography>
           <Search>
             <SearchIconWrapper>
@@ -152,18 +167,20 @@ export const Navbar = ({ setSearch }) => {
             <StyledInputBase
               placeholder="Search…"
               inputProps={{ "aria-label": "search" }}
-              // onChange={() => setSearch((e) => e.target.value)}
+              type="search"
+              onChange={(e) => setSearch(e.target.value)}
             />
           </Search>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
-            <IconButton
-              size="large"
-              aria-label="show 4 new mails"
-              color="inherit"
-            >
-              <Badge badgeContent={4} color="error">
-                <UilShoppingBag />
+            <IconButton size="large" color="inherit">
+              <Badge badgeContent={getData.length} color="error">
+                <Link
+                  to="/redux-e-commerce/cart"
+                  style={{ color: "white", textDecoration: "none" }}
+                >
+                  <UilShoppingBag />
+                </Link>
               </Badge>
             </IconButton>
           </Box>
