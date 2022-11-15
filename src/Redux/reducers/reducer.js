@@ -22,7 +22,7 @@ export const cartReducer = (state = Initial_State, action) => {
         ...state,
         carts: filtered,
       };
-    case "Add_Product":
+    case "Search_Product":
       return {
         ...state,
         products: [...action.payload, ...state.products],

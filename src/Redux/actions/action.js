@@ -21,7 +21,7 @@ export const Remove = (id) => {
 
 export const Product = (item) => {
   return {
-    type: "Add_Product",
+    type: "Search_Product",
     payload: item,
   };
 };
