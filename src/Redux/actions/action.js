@@ -18,3 +18,10 @@ export const Remove = (id) => {
     payload: id,
   };
 };
+
+export const Product = (item) => {
+  return {
+    type: "Add_Product",
+    payload: item,
+  };
+};

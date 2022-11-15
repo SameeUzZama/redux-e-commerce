@@ -1,5 +1,6 @@
 const Initial_State = {
   carts: [],
+  products: [],
   selected: [],
 };
 
@@ -20,6 +21,11 @@ export const cartReducer = (state = Initial_State, action) => {
       return {
         ...state,
         carts: filtered,
+      };
+    case "Add_Product":
+      return {
+        ...state,
+        products: [...action.payload, ...state.products],
       };
     default:
       return state;

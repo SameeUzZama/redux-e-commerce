@@ -2,29 +2,30 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Box, Grid } from "@mui/material";
 import HomeChild from "./HomeChild";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { Product } from "../Redux/actions/action";
 
 export const Home = ({ search }) => {
   const [product, setProduct] = useState([]);
-  // const stateProducts = useSelector((state) => state.cartReducer.carts);
-  // console.log("aaaaaaaaaa", stateProducts);
+  const stateProducts = useSelector((state) => state.cartReducer.products);
+  const dispatch = useDispatch();
 
   const getApi = async () => {
     const result = await axios.get("https://fakestoreapi.com/products");
+    stateProducts.length <= 0 && dispatch(Product(result.data));
     setProduct(result.data);
-    // console.log("aaaa", result);
   };
 
   useEffect(() => {
     getApi();
   }, []);
 
-  // useEffect(() => {
-  //   const filtered = stateProducts.filter((item) =>
-  //     item.title.toLowerCase().includes(search.toLowerCase())
-  //   );
-  //   setProduct(filtered);
-  // }, [search]);
+  useEffect(() => {
+    const filtered = stateProducts.filter((item) =>
+      item.title.toLowerCase().includes(search.toLowerCase())
+    );
+    setProduct(filtered);
+  }, [search]);
 
   return (
     <Box>
