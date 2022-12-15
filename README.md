@@ -1,3 +1,5 @@
+![E-Commerce Redux App](https://user-images.githubusercontent.com/94825943/207939595-7f4f49f5-868d-4ae0-909a-8d3a5bf126f7.gif)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -7,6 +9,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 In the project directory, you can run:
 
 ### `npm start`
+
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
