@@ -13,7 +13,7 @@ export const Home = ({ search }) => {
   const getApi = async () => {
     const result = await axios.get("https://fakestoreapi.com/products");
     stateProducts.length <= 0 && dispatch(Product(result.data));
-    setProduct(result.data);
+    setProduct((prevData) => prevData.concat(result.data));
   };
 
   useEffect(() => {
@@ -26,6 +26,16 @@ export const Home = ({ search }) => {
     );
     setProduct(filtered);
   }, [search]);
+
+  useEffect(() => {
+    const handleScroll = function () {
+      if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+        getApi();
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <Box>
